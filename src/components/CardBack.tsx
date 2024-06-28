@@ -13,25 +13,21 @@ const CardBack: React.FC<CardBackProps> = ({ cvc }) => {
         position: "absolute",
         width: "100%",
         height: "100%",
-        maxHeight: "180px",
-        maxWidth: "290px",
         backfaceVisibility: "hidden",
         backgroundColor: "#FFF",
         color: "#000",
         borderRadius: "12px",
-        border: "2px solid #e6e6e6",
-        transform: "rotateY(180deg)",
         display: "flex",
-        justifyContent: "space-between",
-        alignItems: "start",
         flexDirection: "column",
-        padding: "10px 20px",
+        justifyContent: "space-between",
+        transform: "rotateY(180deg)",
+        border: "2px solid #e6e6e6",
       }}
     >
       <div
         style={{
           fontSize: "1rem",
-          fontWeight: 700,
+          fontWeight: 600,
           color: "#000",
           textShadow: "0 1px 0 #ccc",
           padding: "10px 20px",
@@ -40,7 +36,6 @@ const CardBack: React.FC<CardBackProps> = ({ cvc }) => {
           borderBottom: "2px solid #e6e6e6",
           textAlign: "end",
           marginTop: "40px",
-          transform: "translateX(-20px)",
         }}
       >
         {formatCardCvc(cvc) || "•••"}

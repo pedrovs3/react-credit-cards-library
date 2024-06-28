@@ -1,6 +1,6 @@
 # React Credit Cards Library
 
-[![npm version](https://badge.fury.io/js/react-credit-cards-library.svg)](https://badge.fury.io/js/react-credit-card-library)
+[![npm version](https://badge.fury.io/js/react-credit-cards-library.svg)](https://badge.fury.io/js/react-credit-cards-library)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A React library for displaying credit card components with flip animations, issuer recognition, and customizable appearance.
