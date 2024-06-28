@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { IconType } from "react-icons";
 import {
   FaCcAmex,
@@ -9,42 +9,64 @@ import {
   FaCcVisa,
 } from "react-icons/fa6";
 import { getCardIssuer } from "../utils/get-card-issuer";
+import {
+  formatCardExpiry,
+  formatCardName,
+  formatCardNumber,
+} from "../utils/formatters";
 
-const ISSUERS_LOGOS: {
-  [key: string]: IconType | string;
-} = {
+export type Issuers =
+  | "visa"
+  | "mastercard"
+  | "amex"
+  | "discover"
+  | "diners"
+  | "jcb"
+  | "Unknown";
+
+const ISSUERS_LOGOS: Record<Issuers, IconType | string> = {
   visa: FaCcVisa,
   mastercard: FaCcMastercard,
   amex: FaCcAmex,
   discover: FaCcDiscover,
   diners: FaCcDinersClub,
   jcb: FaCcJcb,
+  Unknown: "Unknown",
 };
 
 interface CardFrontProps {
   number?: string;
   name?: string;
   expiry?: string;
-  issuer?: string;
   focus?: "number" | "name" | "expiry" | "cvc" | string;
 }
 
 const CardFront: React.FC<CardFrontProps> = ({
-  number = "•••• •••• •••• ••••",
-  name = "FULL NAME",
-  expiry = "••/••",
-  issuer = "visa",
+  number = "",
+  name = "YOUR NAME HERE",
+  expiry = "",
   focus,
 }) => {
-  const [issuerLogo, setIssuerLogo] =
-    React.useState<keyof typeof ISSUERS_LOGOS>("Unknown");
+  const [cardData, setCardData] = useState({
+    number: formatCardNumber(number, getCardIssuer(number) as Issuers),
+    name,
+    expiry: formatCardExpiry(expiry),
+  });
 
-  React.useEffect(() => {
+  const [issuerLogo, setIssuerLogo] = useState<Issuers>("Unknown");
+
+  useEffect(() => {
     const flag = getCardIssuer(number);
     setIssuerLogo(flag as keyof typeof ISSUERS_LOGOS);
-
-    return () => {};
   }, [number]);
+
+  useEffect(() => {
+    setCardData({
+      number: formatCardNumber(number, getCardIssuer(number) as Issuers),
+      name: formatCardName(name),
+      expiry: formatCardExpiry(expiry),
+    });
+  }, [number, name, expiry]);
 
   return (
     <div
@@ -52,8 +74,8 @@ const CardFront: React.FC<CardFrontProps> = ({
         position: "absolute",
         width: "100%",
         height: "100%",
-        maxHeight: "180px",
-        maxWidth: "320px",
+        maxHeight: "203px",
+        maxWidth: "340px",
         backfaceVisibility: "hidden",
         backgroundColor: "#FFF",
         color: "#000",
@@ -69,7 +91,7 @@ const CardFront: React.FC<CardFrontProps> = ({
         style={{
           width: "100%",
           display: "flex",
-          justifyContent: "justify-between",
+          justifyContent: "space-between",
           alignItems: "center",
           gap: "5px",
           transition: "all 0.2s ease-in-out",
@@ -133,11 +155,7 @@ const CardFront: React.FC<CardFrontProps> = ({
             transition: "all 0.2s ease-in-out",
           }}
         >
-          {number
-            .replace(" ", "")
-            .substring(0, 16)
-            .replace(/(\d{4})/g, "$1 ")
-            .trim()}
+          {cardData.number}
         </div>
         <div
           style={{
@@ -161,7 +179,7 @@ const CardFront: React.FC<CardFrontProps> = ({
               transition: "all 0.2s ease-in-out",
             }}
           >
-            {name}
+            {cardData.name || "YOUR NAME HERE"}
           </div>
           <div
             style={{
@@ -170,6 +188,7 @@ const CardFront: React.FC<CardFrontProps> = ({
               alignItems: "flex-end",
               maxWidth: "20%",
               transition: "all 0.2s ease-in-out",
+              fontFamily: "monospace",
             }}
           >
             <span
@@ -191,10 +210,7 @@ const CardFront: React.FC<CardFrontProps> = ({
                 fontWeight: "semibold",
               }}
             >
-              {expiry
-                .replace("/", "")
-                .substring(0, 4)
-                .replace(/(\d{2})(\d{2})/, "$1/$2")}
+              {cardData.expiry}
             </span>
           </div>
         </div>

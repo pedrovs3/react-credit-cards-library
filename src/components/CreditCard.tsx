@@ -7,7 +7,6 @@ interface CreditCardProps {
   name: string;
   expiry: string;
   cvc: string;
-  issuer: string;
   customStyle?: React.CSSProperties;
   focus: "number" | "name" | "expiry" | "cvc" | string;
 }
@@ -17,7 +16,6 @@ const CreditCard: React.FC<CreditCardProps> = ({
   name,
   expiry,
   cvc,
-  issuer,
   customStyle,
   focus,
 }) => {
@@ -25,21 +23,19 @@ const CreditCard: React.FC<CreditCardProps> = ({
     <div style={{ ...customStyle }}>
       <div
         style={{
-          width: "300px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "290px",
           height: "180px",
+          borderRadius: "12px",
           position: "relative",
           transformStyle: "preserve-3d",
           transform: focus === "cvc" ? "rotateY(180deg)" : "rotateY(0deg)",
           transition: "transform 0.6s",
         }}
       >
-        <CardFront
-          number={number}
-          name={name}
-          expiry={expiry}
-          issuer={issuer}
-          focus={focus}
-        />
+        <CardFront number={number} name={name} expiry={expiry} focus={focus} />
         <CardBack cvc={cvc} />
       </div>
     </div>
