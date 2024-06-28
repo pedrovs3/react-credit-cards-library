@@ -14,6 +14,7 @@ import {
   formatCardName,
   formatCardNumber,
 } from "../utils/formatters";
+import { FormattedMessage } from "react-intl";
 
 export type Issuers =
   | "visa"
@@ -199,7 +200,7 @@ const CardFront: React.FC<CardFrontProps> = ({
                 transition: "all 0.2s ease-in-out",
               }}
             >
-              VALID THRU
+              <FormattedMessage id="validThru" defaultMessage="VALID THRU" />
             </span>
             <span
               style={{

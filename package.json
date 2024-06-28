@@ -1,6 +1,6 @@
 {
   "name": "react-credit-cards-library",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "A React library for credit card component",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -32,7 +32,8 @@
   "author": "Pedro Silva <pedrovs3@hotmail.com>",
   "license": "MIT",
   "dependencies": {
-    "react-icons": "^5.2.1"
+    "react-icons": "^5.2.1",
+    "react-intl": "^6.6.8"
   },
   "repository": {
     "type": "git",
