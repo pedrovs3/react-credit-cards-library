@@ -22,7 +22,7 @@ const CreditCard: React.FC<CreditCardProps> = ({
   focus,
 }) => {
   return (
-    <div style={{ perspective: "1000px", ...customStyle }}>
+    <div style={{ ...customStyle }}>
       <div
         style={{
           width: "300px",

@@ -1,18 +1,22 @@
 {
-  "name": "react-credit-card-library",
-  "version": "1.0.0",
+  "name": "react-credit-cards-library",
+  "version": "0.0.7",
   "description": "A React library for credit card component",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react,react-dom"
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react,react-dom",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@swc/core": "^1.6.5",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "tsup": "^5.0.0",
@@ -22,8 +26,16 @@
     "react",
     "credit-card",
     "component",
+    "payment",
     "library"
   ],
-  "author": "Pedrovs3",
-  "license": "MIT"
+  "author": "Pedro Silva <pedrovs3@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react-icons": "^5.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pedrovs3/react-credit-card-library.git"
+  }
 }
