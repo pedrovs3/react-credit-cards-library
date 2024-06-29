@@ -73,8 +73,8 @@ const CardFront: React.FC<CardFrontProps> = ({
     <div
       style={{
         position: "absolute",
-        width: "100%",
-        height: "100%",
+        width: "calc(100% - 44px)",
+        height: "calc(100% - 20px)",
         backfaceVisibility: "hidden",
         backgroundColor: richColors ? ISSUER_BG_COLORS[issuer] : "#FFF",
         color: "#000",
@@ -174,7 +174,7 @@ const CardFront: React.FC<CardFrontProps> = ({
           style={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center",
+            alignItems: "flex-end",
             maxWidth: "100%",
             gap: "12px",
           }}

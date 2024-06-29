@@ -113,7 +113,8 @@ The `CreditCard` component accepts the following props:
 | `expiry`    | `string`                   | Expiry date                                  |
 | `cvc`       | `string`                   | CVC code                                     |
 | `focus`     | `string`                   | Field to focus on (`number`, `name`, `expiry`, `cvc`) |
-| `customStyle` | `React.CSSProperties`    | Custom styles for the card component         |
+| `richColors`| `boolean`                  | Use rich colors for card background          |
+
 
 ## Development
 
@@ -122,7 +123,7 @@ To develop and build the library locally:
 1. Clone the repository:
     ```bash
     git clone https://github.com/pedrovs3/react-credit-card-library.git
-    cd react-credit-card-library
+    cd react-credit-cards-library
     ```
 
 2. Install dependencies:

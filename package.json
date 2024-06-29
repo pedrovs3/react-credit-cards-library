@@ -1,6 +1,6 @@
 {
   "name": "react-credit-cards-library",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A React library for credit card component",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -10,8 +10,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.tsx --format esm,cjs --dts --external react,react-dom",
-    "prepublishOnly": "npm run build",
-    "publish": "npm publish --access public"
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "react": "^18.0.0",
