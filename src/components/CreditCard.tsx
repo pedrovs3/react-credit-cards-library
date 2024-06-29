@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CardFront from "./CardFront";
+import CardFront, { Issuers } from "./CardFront";
 import CardBack from "./CardBack";
 import { IntlProvider } from "react-intl";
 import messages, { Locale } from "../lib/intl";
@@ -12,6 +12,7 @@ interface CreditCardProps {
   cvc: string;
   focus: Focused;
   locale?: Locale;
+  richColors?: boolean;
 }
 
 const CreditCard: React.FC<CreditCardProps> = ({
@@ -21,7 +22,10 @@ const CreditCard: React.FC<CreditCardProps> = ({
   cvc,
   focus,
   locale = "en",
+  richColors = false,
 }) => {
+  const [issuerLogo, setIssuerLogo] = useState<Issuers>("Unknown");
+
   return (
     <div
       style={{
@@ -53,10 +57,13 @@ const CreditCard: React.FC<CreditCardProps> = ({
             name={name}
             expiry={expiry}
             focus={focus}
+            issuer={issuerLogo}
+            setIssuer={setIssuerLogo}
+            richColors={richColors}
           />
         </IntlProvider>
 
-        <CardBack cvc={cvc} />
+        <CardBack cvc={cvc} issuer={issuerLogo} richColors={richColors} />
       </div>
     </div>
   );
