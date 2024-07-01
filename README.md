@@ -114,6 +114,16 @@ The `CreditCard` component accepts the following props:
 | `cvc`       | `string`                   | CVC code                                     |
 | `focus`     | `string`                   | Field to focus on (`number`, `name`, `expiry`, `cvc`) |
 | `richColors`| `boolean`                  | Use rich colors for card background          |
+| `cardSizes` | `CardSize`                 | Card size configuration                       |
+
+The `CardSize` type is defined as follows:
+
+```tsx
+type CardSize = {
+  width: string;
+  height: string;
+};
+```
 
 
 ## Development

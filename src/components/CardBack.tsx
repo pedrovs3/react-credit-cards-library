@@ -8,12 +8,17 @@ interface CardBackProps {
   cvc: string;
   issuer?: Issuers;
   richColors?: boolean;
+  cardSizes: {
+    width: string;
+    height: string;
+  };
 }
 
 const CardBack: React.FC<CardBackProps> = ({
   cvc,
   issuer,
   richColors = false,
+  cardSizes,
 }) => {
   return (
     <div
@@ -50,7 +55,7 @@ const CardBack: React.FC<CardBackProps> = ({
               : "#000",
           textShadow: "0 1px 0 #ccc",
           padding: "10px 20px",
-          width: "calc(100% - 40px)",
+          width: cardSizes.width || "calc(100% - 40px)",
           borderTop: "2px solid",
           borderBottom: "2px solid",
           borderColor: richColors
@@ -60,7 +65,7 @@ const CardBack: React.FC<CardBackProps> = ({
           marginTop: "40px",
         }}
       >
-        {formatCardCvc(cvc) || "•••"}
+        {formatCardCvc(cvc || "")}
       </div>
       <div
         style={{

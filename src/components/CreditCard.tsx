@@ -13,6 +13,10 @@ interface CreditCardProps {
   focus: Focused;
   locale?: Locale;
   richColors?: boolean;
+  cardSizes?: {
+    width: string;
+    height: string;
+  };
 }
 
 const CreditCard: React.FC<CreditCardProps> = ({
@@ -23,6 +27,10 @@ const CreditCard: React.FC<CreditCardProps> = ({
   focus,
   locale = "en",
   richColors = false,
+  cardSizes = {
+    width: "calc(100% - 44px)",
+    height: "calc(100% - 20px)",
+  },
 }) => {
   const [issuerLogo, setIssuerLogo] = useState<Issuers>("Unknown");
 
@@ -60,10 +68,16 @@ const CreditCard: React.FC<CreditCardProps> = ({
             issuer={issuerLogo}
             setIssuer={setIssuerLogo}
             richColors={richColors}
+            cardSizes={cardSizes}
           />
         </IntlProvider>
 
-        <CardBack cvc={cvc} issuer={issuerLogo} richColors={richColors} />
+        <CardBack
+          cvc={cvc}
+          issuer={issuerLogo}
+          richColors={richColors}
+          cardSizes={cardSizes}
+        />
       </div>
     </div>
   );

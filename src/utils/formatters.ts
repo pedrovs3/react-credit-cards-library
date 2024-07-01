@@ -31,14 +31,15 @@ export const formatCardName = (value: string) => {
 };
 
 export const formatCardExpiry = (value: string): string => {
-  const cleaned = value.replace(/\D+/g, '');
-  let formatted = cleaned.padEnd(4, '•').replace(/(\d{2})(\d{2})/, '$1/$2');
-  return formatted.substring(0, 5);
+  const formatted = value.replace(/\D+/g, "").padEnd(4, "•");
+  return `${formatted.slice(0, 2)}/${formatted.slice(2, 4)}`;
 };
 
 export const formatCardCvc = (value: string) => {
   return value
-    .replace(/\D/g, "")
-    .replace(/(\d{3})/, "$1")
-    .trim().substring(0, 3);
+  .replace(/\D/g, "")
+  .padEnd(3, "•")
+  .replace(/(\d{3})/, "$1")
+  .trim()
+  .substring(0, 3);
 };

@@ -39,6 +39,10 @@ interface CardFrontProps {
   richColors?: boolean;
   issuer: Issuers;
   setIssuer: React.Dispatch<React.SetStateAction<Issuers>>;
+  cardSizes: {
+    width: string;
+    height: string;
+  };
 }
 
 const CardFront: React.FC<CardFrontProps> = ({
@@ -49,6 +53,7 @@ const CardFront: React.FC<CardFrontProps> = ({
   richColors = false,
   issuer,
   setIssuer,
+  cardSizes,
 }) => {
   const [cardData, setCardData] = useState({
     number: formatCardNumber(number, getCardIssuer(number) as Issuers),
@@ -73,8 +78,6 @@ const CardFront: React.FC<CardFrontProps> = ({
     <div
       style={{
         position: "absolute",
-        width: "calc(100% - 44px)",
-        height: "calc(100% - 20px)",
         backfaceVisibility: "hidden",
         backgroundColor: richColors ? ISSUER_BG_COLORS[issuer] : "#FFF",
         color: "#000",
@@ -89,6 +92,7 @@ const CardFront: React.FC<CardFrontProps> = ({
         maxWidth: "320px",
         maxHeight: "180px",
         fontFamily: "monospace",
+        ...cardSizes,
       }}
     >
       <div

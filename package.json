@@ -1,6 +1,6 @@
 {
   "name": "react-credit-cards-library",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "A React library for credit card component",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
