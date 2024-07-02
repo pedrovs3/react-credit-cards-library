@@ -43,6 +43,7 @@ const CreditCard: React.FC<CreditCardProps> = ({
         width: "100%",
         height: "100%",
         perspective: "1000px",
+        perspectiveOrigin: "center",
       }}
     >
       <div
@@ -57,6 +58,8 @@ const CreditCard: React.FC<CreditCardProps> = ({
           transformStyle: "preserve-3d",
           transform: focus === "cvc" ? "rotateY(180deg)" : "rotateY(0deg)",
           transition: "transform 0.6s",
+          minHeight: "180px",
+          minWidth: "320px",
         }}
       >
         <IntlProvider locale={locale} messages={messages[locale]}>

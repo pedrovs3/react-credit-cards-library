@@ -211,6 +211,7 @@ const CardFront: React.FC<CardFrontProps> = ({
               maxWidth: "20%",
               transition: "all 0.2s ease-in-out",
               fontFamily: "monospace",
+              textAlign: "end",
             }}
           >
             <span

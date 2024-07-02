@@ -40,8 +40,6 @@ const CardBack: React.FC<CardBackProps> = ({
         borderColor: richColors
           ? ISSUER_COLORS[issuer as keyof typeof ISSUER_COLORS]
           : "#e6e6e6",
-        maxWidth: "320px",
-        maxHeight: "180px",
         fontFamily: "monospace",
       }}
     >
@@ -55,7 +53,6 @@ const CardBack: React.FC<CardBackProps> = ({
               : "#000",
           textShadow: "0 1px 0 #ccc",
           padding: "10px 20px",
-          width: cardSizes.width || "calc(100% - 40px)",
           borderTop: "2px solid",
           borderBottom: "2px solid",
           borderColor: richColors
@@ -72,7 +69,7 @@ const CardBack: React.FC<CardBackProps> = ({
           display: "flex",
           justifyContent: "flex-start",
           alignItems: "flex-end",
-          padding: "10px",
+          padding: "10px 15px",
           width: "100%",
           height: "100%",
         }}
