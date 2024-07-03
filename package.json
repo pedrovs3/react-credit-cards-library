@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.tsx --format esm,cjs --dts --external react,react-dom",
+    "version": "changeset version",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
@@ -32,6 +33,7 @@
   "author": "Pedro Silva <pedrovs3@hotmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@changesets/cli": "^2.27.7",
     "react-icons": "^5.2.1",
     "react-intl": "^6.6.8"
   },
