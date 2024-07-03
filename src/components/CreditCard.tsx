@@ -14,8 +14,10 @@ interface CreditCardProps {
   locale?: Locale;
   richColors?: boolean;
   cardSizes?: {
-    width: string;
-    height: string;
+    width?: string;
+    height?: string;
+    maxWidth?: string;
+    maxHeight?: string;
   };
 }
 
@@ -29,7 +31,7 @@ const CreditCard: React.FC<CreditCardProps> = ({
   richColors = false,
   cardSizes = {
     width: "calc(100% - 44px)",
-    height: "calc(100% - 20px)",
+    height: "calc(100% - 24px)",
   },
 }) => {
   const [issuerLogo, setIssuerLogo] = useState<Issuers>("Unknown");
@@ -50,16 +52,16 @@ const CreditCard: React.FC<CreditCardProps> = ({
         style={{
           position: "relative",
           alignItems: "center",
-          width: "100%",
-          height: "100%",
+          height: "auto",
+          width: "auto",
           maxWidth: "320px",
           maxHeight: "180px",
+          minWidth: "320px",
+          minHeight: "180px",
           borderRadius: "12px",
           transformStyle: "preserve-3d",
           transform: focus === "cvc" ? "rotateY(180deg)" : "rotateY(0deg)",
           transition: "transform 0.6s",
-          minHeight: "180px",
-          minWidth: "320px",
         }}
       >
         <IntlProvider locale={locale} messages={messages[locale]}>

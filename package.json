@@ -1,6 +1,6 @@
 {
   "name": "react-credit-cards-library",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "A React library for credit card component",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -54,5 +54,8 @@
       "url": "https://www.npmjs.com/package/react-credit-cards-library",
       "image": "https://img.shields.io/npm/dm/react-credit-cards-library.svg"
     }
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

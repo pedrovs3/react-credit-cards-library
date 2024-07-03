@@ -40,8 +40,8 @@ interface CardFrontProps {
   issuer: Issuers;
   setIssuer: React.Dispatch<React.SetStateAction<Issuers>>;
   cardSizes: {
-    width: string;
-    height: string;
+    width?: string;
+    height?: string;
   };
 }
 
@@ -92,7 +92,8 @@ const CardFront: React.FC<CardFrontProps> = ({
         maxWidth: "320px",
         maxHeight: "180px",
         fontFamily: "monospace",
-        ...cardSizes,
+        width: cardSizes.width,
+        height: cardSizes.height,
       }}
     >
       <div

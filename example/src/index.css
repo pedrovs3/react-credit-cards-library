@@ -28,6 +28,9 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
@@ -42,7 +45,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #f9f9f9;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -54,7 +57,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -63,6 +66,24 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #1a1a1a;
   }
+}
+
+input {
+  border-radius: 8px;
+  border: 2px solid #e6e6e6;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: transparent;
+  color: inherit;
+  transition: border-color 0.25s;
+}
+
+input:focus,
+input:focus-visible {
+  outline: none;
+  border-color: #242424;
 }

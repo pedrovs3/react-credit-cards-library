@@ -9,8 +9,8 @@ interface CardBackProps {
   issuer?: Issuers;
   richColors?: boolean;
   cardSizes: {
-    width: string;
-    height: string;
+    width?: string;
+    height?: string;
   };
 }
 
@@ -18,13 +18,12 @@ const CardBack: React.FC<CardBackProps> = ({
   cvc,
   issuer,
   richColors = false,
-  cardSizes,
 }) => {
   return (
     <div
       style={{
         position: "absolute",
-        width: "100%",
+        width: "calc(100% - 4px)",
         height: "100%",
         backfaceVisibility: "hidden",
         backgroundColor: richColors
