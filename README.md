@@ -115,6 +115,7 @@ The `CreditCard` component accepts the following props:
 | `focus`     | `string`                   | Field to focus on (`number`, `name`, `expiry`, `cvc`) |
 | `richColors`| `boolean`                  | Use rich colors for card background          |
 | `cardSizes` | `CardSize`                 | Card size configuration                       |
+| `locale`    | `pt-BR`, `en`, `es`          | Locale for formatting the expiry date label        |
 
 The `CardSize` type is defined as follows:
 
