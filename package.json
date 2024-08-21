@@ -1,7 +1,7 @@
 {
   "name": "react-credit-cards-library",
-  "version": "0.1.7",
-  "description": "A React library for credit card component",
+  "version": "0.1.8",
+  "description": "A lightweight, customizable React component library for rendering credit card forms with dynamic card issuer detection, input formatting, and responsive design. Built with TypeScript for type safety and flexibility.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
