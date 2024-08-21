@@ -1,14 +1,21 @@
-import { FaCcAmex, FaCcDinersClub, FaCcDiscover, FaCcJcb, FaCcMastercard, FaCcVisa } from "react-icons/fa6";
-import { Issuers } from "../components/CardFront";
 import { IconType } from "react-icons";
+import { FaCcAmex } from "react-icons/fa6";
+import {
+  SiDinersclub,
+  SiDiscover,
+  SiJcb,
+  SiMastercard,
+  SiVisa,
+} from "react-icons/si";
+import { Issuers } from "../components/CardFront";
 
 export const ISSUERS_LOGOS: Record<Issuers, IconType | string> = {
-  visa: FaCcVisa,
-  mastercard: FaCcMastercard,
+  visa: SiVisa,
+  mastercard: SiMastercard,
   amex: FaCcAmex,
-  discover: FaCcDiscover,
-  diners: FaCcDinersClub,
-  jcb: FaCcJcb,
+  discover: SiDiscover,
+  diners: SiDinersclub,
+  jcb: SiJcb,
   Unknown: "Unknown",
 };
 
