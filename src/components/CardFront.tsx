@@ -1,21 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { IconType } from "react-icons";
-import {
-  FaCcAmex,
-  FaCcDinersClub,
-  FaCcDiscover,
-  FaCcJcb,
-  FaCcMastercard,
-  FaCcVisa,
-} from "react-icons/fa6";
-import { getCardIssuer } from "../utils/get-card-issuer";
+import React, { CSSProperties, useEffect, useMemo } from "react";
+import { FormattedMessage } from "react-intl";
+import { Focused } from "..";
 import {
   formatCardExpiry,
   formatCardName,
   formatCardNumber,
 } from "../utils/formatters";
-import { FormattedMessage } from "react-intl";
-import { Focused } from "..";
+import { getCardIssuer } from "../utils/get-card-issuer";
 import {
   ISSUERS_LOGOS,
   ISSUER_BG_COLORS,
@@ -55,72 +46,83 @@ const CardFront: React.FC<CardFrontProps> = ({
   setIssuer,
   cardSizes,
 }) => {
-  const [cardData, setCardData] = useState({
-    number: formatCardNumber(number, getCardIssuer(number) as Issuers),
-    name,
-    expiry: formatCardExpiry(expiry),
-  });
+  const formattedNumber = useMemo(
+    () => formatCardNumber(number, getCardIssuer(number) as Issuers),
+    [number]
+  );
+  const formattedName = useMemo(() => formatCardName(name), [name]);
+  const formattedExpiry = useMemo(() => formatCardExpiry(expiry), [expiry]);
 
   useEffect(() => {
     const flag = getCardIssuer(number);
-    setIssuer(flag as keyof typeof ISSUERS_LOGOS);
-  }, [number]);
+    setIssuer(flag as Issuers);
+  }, [number, setIssuer]);
 
-  useEffect(() => {
-    setCardData({
-      number: formatCardNumber(number, getCardIssuer(number) as Issuers),
-      name: formatCardName(name),
-      expiry: formatCardExpiry(expiry),
-    });
-  }, [number, name, expiry]);
+  const cardData = useMemo(
+    () => ({
+      number: formattedNumber,
+      name: formattedName,
+      expiry: formattedExpiry,
+    }),
+    [formattedNumber, formattedName, formattedExpiry]
+  );
 
-  return (
-    <div
-      style={{
-        position: "absolute",
-        backfaceVisibility: "hidden",
-        backgroundColor: richColors ? ISSUER_BG_COLORS[issuer] : "#FFF",
-        color: "#000",
-        borderRadius: "12px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        padding: "10px 20px",
-        border: "2px solid",
-        borderColor: richColors ? ISSUER_COLORS[issuer] : "#e6e6e6",
-        transition: "all 0.2s ease-in-out",
-        maxWidth: "320px",
-        maxHeight: "180px",
-        fontFamily: "monospace",
-        width: cardSizes.width,
-        height: cardSizes.height,
-      }}
-    >
+  const containerStyle = useMemo<CSSProperties>(
+    () => ({
+      position: "absolute",
+      backfaceVisibility: "hidden" as const,
+      backgroundColor: richColors ? ISSUER_BG_COLORS[issuer] : "#FFF",
+      color: "#000",
+      borderRadius: "12px",
+      display: "flex",
+      flexDirection: "column" as const,
+      justifyContent: "space-between",
+      padding: "10px 20px",
+      border: "2px solid",
+      borderColor: richColors ? ISSUER_COLORS[issuer] : "#e6e6e6",
+      transition: "all 0.2s ease-in-out",
+      maxWidth: "320px",
+      maxHeight: "180px",
+      fontFamily: "monospace",
+      width: cardSizes.width,
+      height: cardSizes.height,
+    }),
+    [richColors, issuer, cardSizes]
+  );
+
+  const logoStyle = useMemo(
+    () => ({
+      width: "100%",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: "5px",
+      transition: "all 0.2s ease-in-out",
+    }),
+    []
+  );
+
+  const renderIssuerLogo = useMemo(() => {
+    return issuer && issuer !== "Unknown" ? (
+      React.createElement(ISSUERS_LOGOS[issuer], {
+        size: 40,
+        color: richColors ? ISSUER_COLORS[issuer] : "#808080",
+      })
+    ) : (
       <div
         style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "5px",
-          transition: "all 0.2s ease-in-out",
+          width: "40px",
+          height: "40px",
+          backgroundColor: "transparent",
         }}
-      >
-        {issuer && issuer !== "Unknown" ? (
-          React.createElement(ISSUERS_LOGOS[issuer], {
-            size: 40,
-            color: richColors ? ISSUER_COLORS[issuer] : "#808080",
-          })
-        ) : (
-          <div
-            style={{
-              width: "40px",
-              height: "40px",
-              backgroundColor: "transparent",
-            }}
-          />
-        )}
-      </div>
+      />
+    );
+  }, [issuer, richColors]);
+
+  return (
+    <div style={containerStyle}>
+      <div style={logoStyle}>{renderIssuerLogo}</div>
+
       <div
         style={{
           display: "flex",
@@ -253,4 +255,4 @@ const CardFront: React.FC<CardFrontProps> = ({
   );
 };
 
-export default CardFront;
+export default React.memo(CardFront);
