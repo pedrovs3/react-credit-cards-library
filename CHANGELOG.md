@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.9] - 2024-09-20
+
+### Added
+
+- Add getCardIssuer function to handle issuers of card and validity card number
+- New placeholder Intl for username field.
+
 ## [0.1.8] - 2024-08-20
 
 ### Added

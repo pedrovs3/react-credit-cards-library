@@ -204,7 +204,12 @@ const CardFront: React.FC<CardFrontProps> = ({
               transition: "all 0.2s ease-in-out",
             }}
           >
-            {cardData.name || "YOUR NAME HERE"}
+            {cardData.name || (
+              <FormattedMessage
+                id="namePlaceholder"
+                defaultMessage="YOUR NAME HERE"
+              />
+            )}
           </div>
           <div
             style={{
