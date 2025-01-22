@@ -1,3 +1,7 @@
+![image](https://github.com/pedrovs3/react-credit-cards-library/assets/86010036/c6921809-e172-4faa-b205-d7fbb117a12e)
+![image](https://github.com/pedrovs3/react-credit-cards-library/assets/86010036/d8e18ce0-8a18-473e-9ee9-18660564b6ed)
+
+
 # React Credit Cards Library
 
 [![npm version](https://badge.fury.io/js/react-credit-cards-library.svg)](https://badge.fury.io/js/react-credit-cards-library)
@@ -146,11 +150,6 @@ To develop and build the library locally:
     ```bash
     npm run build
     ```
-
-## Screenshots
-![image](https://github.com/pedrovs3/react-credit-cards-library/assets/86010036/c6921809-e172-4faa-b205-d7fbb117a12e)
-![image](https://github.com/pedrovs3/react-credit-cards-library/assets/86010036/d8e18ce0-8a18-473e-9ee9-18660564b6ed)
-
 
 ## License
 
