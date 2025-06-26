@@ -7,7 +7,7 @@ import {
   SiMastercard,
   SiVisa,
 } from "react-icons/si";
-import { Issuers } from "../components/CardFront";
+import { Issuers } from "../types/issuers";
 
 export const ISSUERS_LOGOS: Record<Issuers, IconType | string> = {
   visa: SiVisa,
@@ -20,21 +20,21 @@ export const ISSUERS_LOGOS: Record<Issuers, IconType | string> = {
 };
 
 export const ISSUER_COLORS: Record<Issuers, string> = {
-  visa: "#1a1f71",
-  mastercard: "#F79E1B",
-  amex: "#007cc3",
-  discover: "#ff5f00",
-  diners: "#888",
-  jcb: "#1a1f71",
-  Unknown: "#e6e6e6",
+  visa: "#1A428A", // Azul clássico da Visa
+  mastercard: "#EB001B", // Vermelho icônico da Mastercard
+  amex: "#016FD0", // Azul premium da Amex
+  discover: "#FF5F00", // Laranja vibrante da Discover (mantido)
+  diners: "#004B8D", // Azul corporativo da Diners
+  jcb: "#009E60", // Verde distintivo da JCB
+  Unknown: "#80868B", // Cinza neutro com melhor contraste
 };
 
 export const ISSUER_BG_COLORS: Record<Issuers, string> = {
-  visa: "#1a1f710f",
-  mastercard: "#F79E1B0f",
-  amex: "#007cc30f",
-  discover: "#ff5f000f",
-  diners: "#888880f",
-  jcb: "#1a1f710f",
-  Unknown: "#fff",
+  visa: "#1A428A0f",
+  mastercard: "#EB001B0f",
+  amex: "#016FD00f",
+  discover: "#FF5F000f",
+  diners: "#004B8D0f",
+  jcb: "#009E600f",
+  Unknown: "#FFFFFF", // Fundo branco para o desconhecido
 };
