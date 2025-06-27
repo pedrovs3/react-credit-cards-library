@@ -1,7 +1,7 @@
 import React, { CSSProperties, useMemo } from "react";
 import { FormattedMessage } from "react-intl";
-import { Focused } from ".."; // Supondo que 'Focused' venha daqui
-import { Issuers } from "../types/issuers";
+import { Focused } from ".."; // Assuming 'Focused' comes from here
+import { Issuer } from "../types/issuers";
 import {
   formatCardExpiry,
   formatCardName,
@@ -37,7 +37,7 @@ const ChipIcon = ({ color }: { color: string }) => (
 
 const getTextColor = (
   isFocused: boolean,
-  issuer: Issuers,
+  issuer: Issuer,
   richColors?: boolean
 ) => {
   if (isFocused) {
@@ -54,7 +54,7 @@ const CardFront: React.FC<CardFrontProps> = ({
   richColors = false,
   cardSizes,
 }) => {
-  const issuer = useMemo(() => getCardIssuer(number) as Issuers, [number]);
+  const issuer = useMemo(() => getCardIssuer(number) as Issuer, [number]);
 
   const formattedNumber = useMemo(
     () => formatCardNumber(number, issuer),

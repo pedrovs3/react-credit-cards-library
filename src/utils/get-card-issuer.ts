@@ -1,11 +1,4 @@
-type CardIssuer =
-  | "visa"
-  | "mastercard"
-  | "amex"
-  | "diners"
-  | "discover"
-  | "jcb"
-  | "Unknown";
+import { Issuer } from "../types/issuers";
 
 /**
  * Determines the card issuer based on the provided card number.
@@ -18,7 +11,7 @@ type CardIssuer =
  * @returns {string} - The name of the card issuer (e.g., 'Visa', 'MasterCard', etc.)
  *                     or 'Unknown' if no issuer matches the card number.
  */
-export function getCardIssuer(cardNumber: string): CardIssuer {
+export function getCardIssuer(cardNumber: string): Issuer {
   const sanitizedCardNumber = cardNumber.replace(/[\s-]/g, "");
 
   const cardIssuers: Record<string, RegExp> = {
@@ -28,11 +21,16 @@ export function getCardIssuer(cardNumber: string): CardIssuer {
     diners: /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/,
     discover: /^6(?:011|5[0-9]{2})[0-9]{12}$/,
     jcb: /^(?:2131|1800|35\d{3})\d{11}$/,
+    sodexo: /^(606071|603389)/,
+    vr: /^(637036|627416)/,
+    ticket_vr: /^603342/,
+    ticket_va: /^602651/,
+    alelo: /^5067/,
   };
 
   for (const [issuer, pattern] of Object.entries(cardIssuers)) {
     if (pattern.test(sanitizedCardNumber)) {
-      return issuer as CardIssuer;
+      return issuer as Issuer;
     }
   }
 

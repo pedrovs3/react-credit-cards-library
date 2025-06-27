@@ -1,6 +1,13 @@
-import { Issuers } from "../components/CardFront";
+import { Issuer } from "../types/issuers";
 
-export const formatCardNumber = (value: string, issuer: Issuers): string => {
+/**
+ * Formats a credit card number based on the issuer type.
+ *
+ * @param {string} value - The raw credit card number input.
+ * @param {Issuer} issuer - The type of the credit card issuer. (you can use value returned of getCardIssuer function)
+ * @returns {string} - The formatted credit card number.
+ */
+export const formatCardNumber = (value: string, issuer: Issuer): string => {
   const cleaned = value.replace(/\D+/g, "");
   let formatted = "";
   let maxLength = 19; // 16 digits + 3 spaces
@@ -26,6 +33,50 @@ export const formatCardNumber = (value: string, issuer: Issuers): string => {
         .trim();
       maxLength = 16; // 14 digits + 2 spaces
       break;
+    case "discover":
+      formatted = cleaned
+        .padEnd(16, "•")
+        .replace(/(\d{4})(?=\d)/g, "$1 ")
+        .trim();
+
+      maxLength = 19; // 16 digits + 3 spaces
+      break;
+    case "sodexo":
+      formatted = cleaned
+        .padEnd(16, "•")
+        .replace(/(\d{4})(?=\d)/g, "$1 ")
+        .trim();
+      maxLength = 19; // 16 digits + 3 spaces
+      break;
+    case "vr":
+      formatted = cleaned
+        .padEnd(16, "•")
+        .replace(/(\d{4})(?=\d)/g, "$1 ")
+        .trim();
+      maxLength = 19; // 16 digits + 3 spaces
+      break;
+    case "ticket_vr":
+      formatted = cleaned
+        .padEnd(16, "•")
+        .replace(/(\d{4})(?=\d)/g, "$1 ")
+        .trim();
+      maxLength = 19; // 16 digits + 3 spaces
+      break;
+    case "ticket_va":
+      formatted = cleaned
+        .padEnd(16, "•")
+        .replace(/(\d{4})(?=\d)/g, "$1 ")
+        .trim();
+      maxLength = 19; // 16 digits + 3 spaces
+      break;
+    case "alelo":
+      formatted = cleaned
+        .padEnd(16, "•")
+        .replace(/(\d{4})(?=\d)/g, "$1 ")
+        .trim();
+      maxLength = 19; // 16 digits + 3 spaces
+      break;
+
     default:
       formatted = cleaned.padEnd(16, "•").replace(/(.{4})(?=.)/g, "$1 ");
       break;
