@@ -94,6 +94,17 @@ const CardFront: React.FC<CardFrontProps> = ({
     if (issuer === "Unknown") {
       return <div style={{ width: "40px", height: "40px" }} />;
     }
+
+    if (typeof ISSUERS_LOGOS[issuer] === "string") {
+      return (
+        <img
+          src={ISSUERS_LOGOS[issuer]}
+          alt={issuer}
+          style={{ width: "40px", height: "40px", color: logoAndChipColor }}
+        />
+      );
+    }
+
     return React.createElement(ISSUERS_LOGOS[issuer], {
       size: 40,
       color: logoAndChipColor,

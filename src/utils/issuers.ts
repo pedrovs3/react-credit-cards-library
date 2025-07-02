@@ -13,21 +13,26 @@ export const ISSUERS_LOGOS: Record<Issuer, IconType | string> = {
   visa: SiVisa,
   mastercard: SiMastercard,
   amex: FaCcAmex,
+  elo: "https://upload.wikimedia.org/wikipedia/commons/5/51/Elo_logo.png",
   discover: SiDiscover,
   diners: SiDinersclub,
   jcb: SiJcb,
-  sodexo: "Sodexo", // Placeholder for Sodexo logo
-  vr: "VR", // Placeholder for VR logo
-  ticket_vr: "Ticket VR", // Placeholder for Ticket VR logo
-  ticket_va: "Ticket VA", // Placeholder for Ticket VA logo
-  alelo: "Alelo", // Placeholder for Alelo logo
-  Unknown: "Unknown",
+  sodexo:
+    "https://play-lh.googleusercontent.com/g-a0MkejWlXJdUnhyaDHI2M0e8OTSUCX3qBB2Vk7ufAcHTDROYp099hErGY6KMH4QA", // Placeholder for Sodexo logo
+  vr: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPncSoAUSeeNHxKx65Jzse3XtGsU7uKnnYkw&s", // Placeholder for VR logo
+  ticket_vr:
+    "https://logodownload.org/wp-content/uploads/2016/03/ticket-logo.png", // Placeholder for Ticket VR logo
+  ticket_va:
+    "https://logodownload.org/wp-content/uploads/2016/03/ticket-logo.png", // Placeholder for Ticket VA logo
+  alelo: "https://logodownload.org/wp-content/uploads/2017/09/alelo-logo.png", // Placeholder for Alelo logo
+  Unknown: "../assets/icons/unknown.svg",
 };
 
 export const ISSUER_COLORS: Record<Issuer, string> = {
   visa: "#1A428A", // Classic blue of Visa
   mastercard: "#EB001B", // Iconic red of Mastercard
   amex: "#016FD0", // Premium blue of Amex
+  elo: "#1A428A", // Light blue for Elo (unchanged)
   discover: "#FF5F00", // Vibrant orange of Discover (unchanged)
   diners: "#004B8D", // Corporate blue of Diners
   jcb: "#009E60", // Distinctive green of JCB
@@ -43,6 +48,7 @@ export const ISSUER_BG_COLORS: Record<Issuer, string> = {
   visa: "#1A428A0f",
   mastercard: "#EB001B0f",
   amex: "#016FD00f",
+  elo: "#1A428A0f", // Fundo azul claro para Elo
   discover: "#FF5F000f",
   diners: "#004B8D0f",
   jcb: "#009E600f",

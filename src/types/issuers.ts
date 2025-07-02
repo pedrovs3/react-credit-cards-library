@@ -3,6 +3,7 @@ export type Issuer =
   | "mastercard"
   | "amex"
   | "diners"
+  | "elo"
   | "discover"
   | "jcb"
   | "sodexo"
