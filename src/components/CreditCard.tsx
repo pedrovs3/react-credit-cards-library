@@ -1,9 +1,10 @@
-import React, { CSSProperties, useMemo, useState } from "react";
+import React, { CSSProperties, useMemo } from "react";
 import { IntlProvider } from "react-intl";
 import { Focused } from "..";
 import messages, { Locale } from "../lib/intl";
+import { getCardIssuer } from "../utils/get-card-issuer";
 import CardBack from "./CardBack";
-import CardFront, { Issuers } from "./CardFront";
+import CardFront from "./CardFront";
 
 interface CreditCardProps {
   number: string;
@@ -30,11 +31,12 @@ const CreditCard: React.FC<CreditCardProps> = ({
   locale = "en",
   richColors = false,
   cardSizes = {
-    width: "calc(100% - 44px)",
-    height: "calc(100% - 24px)",
+    width: "320px",
+    height: "180px",
+    maxWidth: "100%",
   },
 }) => {
-  const [issuerLogo, setIssuerLogo] = useState<Issuers>("Unknown");
+  const issuer = useMemo(() => getCardIssuer(number), [number]);
 
   const containerStyle = useMemo<CSSProperties>(
     () => ({
@@ -52,19 +54,15 @@ const CreditCard: React.FC<CreditCardProps> = ({
   const cardStyle = useMemo<CSSProperties>(
     () => ({
       position: "relative",
-      alignItems: "center",
-      height: "auto",
-      width: "auto",
-      maxWidth: "320px",
-      maxHeight: "180px",
-      minWidth: "320px",
-      minHeight: "180px",
-      borderRadius: "12px",
       transformStyle: "preserve-3d",
-      transform: focus === "cvc" ? "rotateY(180deg)" : "rotateY(0deg)",
       transition: "transform 0.6s",
+      width: cardSizes.width,
+      height: cardSizes.height,
+      maxWidth: cardSizes.maxWidth,
+      maxHeight: cardSizes.maxHeight,
+      transform: focus === "cvc" ? "rotateY(180deg)" : "rotateY(0deg)",
     }),
-    [focus]
+    [focus, cardSizes]
   );
 
   return (
@@ -76,19 +74,16 @@ const CreditCard: React.FC<CreditCardProps> = ({
             name={name}
             expiry={expiry}
             focus={focus}
-            issuer={issuerLogo}
-            setIssuer={setIssuerLogo}
+            richColors={richColors}
+            cardSizes={cardSizes}
+          />
+          <CardBack
+            cvc={cvc}
+            issuer={issuer}
             richColors={richColors}
             cardSizes={cardSizes}
           />
         </IntlProvider>
-
-        <CardBack
-          cvc={cvc}
-          issuer={issuerLogo}
-          richColors={richColors}
-          cardSizes={cardSizes}
-        />
       </div>
     </div>
   );

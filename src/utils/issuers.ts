@@ -1,3 +1,4 @@
+import React from "react";
 import { IconType } from "react-icons";
 import { FaCcAmex } from "react-icons/fa6";
 import {
@@ -7,34 +8,62 @@ import {
   SiMastercard,
   SiVisa,
 } from "react-icons/si";
-import { Issuers } from "../components/CardFront";
+import {
+  AleloLogo,
+  EloLogo,
+  SodexoLogo,
+  TicketLogo,
+  VrLogo,
+} from "../assets/icons/";
+import { Issuer } from "../types/issuers";
 
-export const ISSUERS_LOGOS: Record<Issuers, IconType | string> = {
+export const ISSUERS_LOGOS: Record<
+  Issuer,
+  IconType | React.ReactElement | String
+> = {
   visa: SiVisa,
   mastercard: SiMastercard,
   amex: FaCcAmex,
+  elo: EloLogo,
   discover: SiDiscover,
   diners: SiDinersclub,
   jcb: SiJcb,
-  Unknown: "Unknown",
+  sodexo: SodexoLogo,
+  vr: VrLogo,
+  ticket_vr: TicketLogo,
+  ticket_va: TicketLogo,
+  alelo: AleloLogo,
+  Unknown: "../assets/icons/unknown.svg",
 };
 
-export const ISSUER_COLORS: Record<Issuers, string> = {
-  visa: "#1a1f71",
-  mastercard: "#F79E1B",
-  amex: "#007cc3",
-  discover: "#ff5f00",
-  diners: "#888",
-  jcb: "#1a1f71",
-  Unknown: "#e6e6e6",
+export const ISSUER_COLORS: Record<Issuer, string> = {
+  visa: "#1A428A", // Classic blue of Visa
+  mastercard: "#EB001B", // Iconic red of Mastercard
+  amex: "#016FD0", // Premium blue of Amex
+  elo: "#1A428A", // Light blue for Elo (unchanged)
+  discover: "#FF5F00", // Vibrant orange of Discover (unchanged)
+  diners: "#004B8D", // Corporate blue of Diners
+  jcb: "#009E60", // Distinctive green of JCB
+  sodexo: "#FFB300", // Bright yellow for Sodexo
+  vr: "#FF6F00", // Bright orange for VR
+  ticket_vr: "#FF6F00", // Bright orange for Ticket VR
+  ticket_va: "#FF6F00", // Bright orange for Ticket VA
+  alelo: "#FF6F00", // Bright orange for Alelo
+  Unknown: "#80868B", // Neutral gray with better contrast
 };
 
-export const ISSUER_BG_COLORS: Record<Issuers, string> = {
-  visa: "#1a1f710f",
-  mastercard: "#F79E1B0f",
-  amex: "#007cc30f",
-  discover: "#ff5f000f",
-  diners: "#888880f",
-  jcb: "#1a1f710f",
-  Unknown: "#fff",
+export const ISSUER_BG_COLORS: Record<Issuer, string> = {
+  visa: "#1A428A0f",
+  mastercard: "#EB001B0f",
+  amex: "#016FD00f",
+  elo: "#1A428A0f", // Fundo azul claro para Elo
+  discover: "#FF5F000f",
+  diners: "#004B8D0f",
+  jcb: "#009E600f",
+  sodexo: "#FFB3000f", // Fundo amarelo claro para Sodexo
+  vr: "#FF6F000f", // Fundo laranja claro para VR
+  ticket_vr: "#FF6F000f", // Fundo laranja claro para Ticket
+  ticket_va: "#FF6F000f", // Fundo laranja claro para Ticket VA
+  alelo: "#FF6F000f", // Fundo laranja claro para Alelo
+  Unknown: "#FFFFFF", // Fundo branco para o desconhecido
 };

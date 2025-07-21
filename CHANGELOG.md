@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.1
+
+### Patch Changes
+
+- feat: add new issuers
+- feat: add svg for issuers
+- chore: optimize card component
+
+## 0.2.0
+
+### Minor Changes
+
+- change base of styling code
+- organize flow of componente (props)
+
 ## [0.1.9] - 2024-09-20
 
 ### Added
