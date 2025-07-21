@@ -1,3 +1,4 @@
+import React from "react";
 import { IconType } from "react-icons";
 import { FaCcAmex } from "react-icons/fa6";
 import {
@@ -7,24 +8,31 @@ import {
   SiMastercard,
   SiVisa,
 } from "react-icons/si";
+import {
+  AleloLogo,
+  EloLogo,
+  SodexoLogo,
+  TicketLogo,
+  VrLogo,
+} from "../assets/icons/";
 import { Issuer } from "../types/issuers";
 
-export const ISSUERS_LOGOS: Record<Issuer, IconType | string> = {
+export const ISSUERS_LOGOS: Record<
+  Issuer,
+  IconType | React.ReactElement | String
+> = {
   visa: SiVisa,
   mastercard: SiMastercard,
   amex: FaCcAmex,
-  elo: "https://upload.wikimedia.org/wikipedia/commons/5/51/Elo_logo.png",
+  elo: EloLogo,
   discover: SiDiscover,
   diners: SiDinersclub,
   jcb: SiJcb,
-  sodexo:
-    "https://play-lh.googleusercontent.com/g-a0MkejWlXJdUnhyaDHI2M0e8OTSUCX3qBB2Vk7ufAcHTDROYp099hErGY6KMH4QA", // Placeholder for Sodexo logo
-  vr: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPncSoAUSeeNHxKx65Jzse3XtGsU7uKnnYkw&s", // Placeholder for VR logo
-  ticket_vr:
-    "https://logodownload.org/wp-content/uploads/2016/03/ticket-logo.png", // Placeholder for Ticket VR logo
-  ticket_va:
-    "https://logodownload.org/wp-content/uploads/2016/03/ticket-logo.png", // Placeholder for Ticket VA logo
-  alelo: "https://logodownload.org/wp-content/uploads/2017/09/alelo-logo.png", // Placeholder for Alelo logo
+  sodexo: SodexoLogo,
+  vr: VrLogo,
+  ticket_vr: TicketLogo,
+  ticket_va: TicketLogo,
+  alelo: AleloLogo,
   Unknown: "../assets/icons/unknown.svg",
 };
 

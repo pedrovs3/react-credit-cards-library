@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1
+
+### Patch Changes
+
+- feat: add new issuers
+- feat: add svg for issuers
+- chore: optimize card component
+
 ## 0.2.0
 
 ### Minor Changes

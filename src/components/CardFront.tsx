@@ -104,11 +104,18 @@ const CardFront: React.FC<CardFrontProps> = ({
         />
       );
     }
-
-    return React.createElement(ISSUERS_LOGOS[issuer], {
-      size: 40,
-      color: logoAndChipColor,
-    });
+    const logo = ISSUERS_LOGOS[issuer];
+    if (React.isValidElement(logo)) {
+      return React.cloneElement(logo);
+    }
+    if (typeof logo === "function") {
+      return React.createElement(logo, {
+        size: 40,
+        color: logoAndChipColor,
+      });
+    }
+    // fallback for unexpected types
+    return <div style={{ width: "40px", height: "40px" }} />;
   }, [issuer, logoAndChipColor]);
 
   return (
@@ -121,6 +128,7 @@ const CardFront: React.FC<CardFrontProps> = ({
           gap: "5px",
           paddingTop: "10px",
           paddingLeft: "20px",
+          maxWidth: "40px",
         }}
       >
         {renderIssuerLogo}
