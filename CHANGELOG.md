@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2
+
+### Patch Changes
+
+- - docs: update peer dependencies to accept react 19
+
 ## 0.2.1
 
 ### Patch Changes
