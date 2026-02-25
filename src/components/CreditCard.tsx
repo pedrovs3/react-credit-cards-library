@@ -1,10 +1,18 @@
-import React, { CSSProperties, useMemo } from "react";
+import { type CSSProperties, memo, useMemo } from "react";
 import { IntlProvider } from "react-intl";
-import { Focused } from "..";
-import messages, { Locale } from "../lib/intl";
+import type { Focused } from "../types/issuers";
+import messages, { type Locale } from "../lib/intl";
 import { getCardIssuer } from "../utils/get-card-issuer";
+import { ISSUER_SHADOWS } from "../utils/issuers";
 import CardBack from "./CardBack";
 import CardFront from "./CardFront";
+
+interface CardSizes {
+  width?: string;
+  height?: string;
+  maxWidth?: string;
+  maxHeight?: string;
+}
 
 interface CreditCardProps {
   number: string;
@@ -14,15 +22,10 @@ interface CreditCardProps {
   focus: Focused;
   locale?: Locale;
   richColors?: boolean;
-  cardSizes?: {
-    width?: string;
-    height?: string;
-    maxWidth?: string;
-    maxHeight?: string;
-  };
+  cardSizes?: CardSizes;
 }
 
-const CreditCard: React.FC<CreditCardProps> = ({
+const CreditCard = ({
   number,
   name,
   expiry,
@@ -35,7 +38,7 @@ const CreditCard: React.FC<CreditCardProps> = ({
     height: "180px",
     maxWidth: "100%",
   },
-}) => {
+}: CreditCardProps): JSX.Element => {
   const issuer = useMemo(() => getCardIssuer(number), [number]);
 
   const containerStyle = useMemo<CSSProperties>(
@@ -48,21 +51,25 @@ const CreditCard: React.FC<CreditCardProps> = ({
       perspective: "1000px",
       perspectiveOrigin: "center",
     }),
-    []
+    [],
   );
 
   const cardStyle = useMemo<CSSProperties>(
     () => ({
       position: "relative",
       transformStyle: "preserve-3d",
-      transition: "transform 0.6s",
+      transition: "transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1)",
       width: cardSizes.width,
       height: cardSizes.height,
       maxWidth: cardSizes.maxWidth,
       maxHeight: cardSizes.maxHeight,
       transform: focus === "cvc" ? "rotateY(180deg)" : "rotateY(0deg)",
+      boxShadow: richColors
+        ? ISSUER_SHADOWS[issuer]
+        : "0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04)",
+      borderRadius: "14px",
     }),
-    [focus, cardSizes]
+    [focus, cardSizes, richColors, issuer],
   );
 
   return (
@@ -89,4 +96,7 @@ const CreditCard: React.FC<CreditCardProps> = ({
   );
 };
 
-export default React.memo(CreditCard);
+/** Memoized, typed as a plain function component for cross-version @types/react compat */
+export default memo(CreditCard) as unknown as (
+  props: CreditCardProps,
+) => JSX.Element;

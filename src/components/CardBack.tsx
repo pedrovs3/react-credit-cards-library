@@ -1,12 +1,12 @@
-import React, { CSSProperties, useMemo } from "react";
+import { type CSSProperties, memo, useMemo } from "react";
 import { HiOutlineSignal } from "react-icons/hi2";
-import { Issuers } from "../types/issuers";
+import type { Issuer } from "../types/issuers";
 import { formatCardCvc } from "../utils/formatters";
-import { ISSUER_BG_COLORS, ISSUER_COLORS } from "../utils/issuers";
+import { ISSUER_COLORS, ISSUER_GRADIENTS } from "../utils/issuers";
 
 interface CardBackProps {
   cvc: string;
-  issuer?: Issuers;
+  issuer?: Issuer;
   richColors?: boolean;
   cardSizes: {
     width?: string;
@@ -14,24 +14,13 @@ interface CardBackProps {
   };
 }
 
-const getDynamicColor = (
-  baseColor: string,
-  issuer: Issuers,
-  richColors?: boolean
-) => {
-  if (richColors && issuer !== "Unknown") {
-    return ISSUER_COLORS[issuer];
-  }
-  return baseColor;
-};
-
-const CardBack: React.FC<CardBackProps> = ({
+const CardBack = ({
   cvc,
   issuer = "Unknown",
   richColors = false,
   cardSizes,
-}) => {
-  const borderColor = getDynamicColor("#e6e6e6", issuer, richColors);
+}: CardBackProps) => {
+  const isDark = richColors;
 
   const containerStyle = useMemo<CSSProperties>(
     () => ({
@@ -41,78 +30,88 @@ const CardBack: React.FC<CardBackProps> = ({
       maxWidth: "320px",
       maxHeight: "180px",
       backfaceVisibility: "hidden",
-      backgroundColor: richColors ? ISSUER_BG_COLORS[issuer] : "#FFF",
-      color: "#000",
-      borderRadius: "12px",
+      background: isDark ? ISSUER_GRADIENTS[issuer] : "#fff",
+      borderRadius: "14px",
       display: "flex",
       flexDirection: "column",
       justifyContent: "flex-start",
       transform: "rotateY(180deg)",
-      border: "2px solid",
-      borderColor: borderColor,
-      fontFamily: "monospace",
+      border: isDark ? "1px solid rgba(255,255,255,0.08)" : "1px solid #e0e0e0",
+      fontFamily:
+        "'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace",
       overflow: "hidden",
     }),
-    [richColors, issuer, cardSizes, borderColor]
+    [isDark, issuer, cardSizes],
   );
 
   const magneticStripeStyle = useMemo<CSSProperties>(
     () => ({
-      borderTop: "2px solid",
-      borderBottom: "2px solid",
-      borderColor: richColors
-        ? ISSUER_COLORS[issuer as keyof typeof ISSUER_COLORS]
-        : "#e6e6e6",
-      height: "40px",
       width: "100%",
-      marginTop: "20px",
+      height: "38px",
+      marginTop: "18px",
+      background: isDark
+        ? "linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.35) 100%)"
+        : "#2a2a2a",
     }),
-    [issuer, richColors]
+    [isDark],
   );
 
-  const cvcSectionStyle = useMemo<CSSProperties>(
+  const signatureStripStyle = useMemo<CSSProperties>(
     () => ({
-      width: "100%",
-      backgroundColor: "#FFF",
-      marginTop: "20px",
-      textAlign: "end",
-      color: "#000",
-      fontStyle: "italic",
-      fontWeight: "semibold",
-      fontSize: "1rem",
-      transition: "all 0.2s ease-in-out",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-end",
+      margin: "14px 20px 0",
+      padding: "0 12px",
+      height: "28px",
+      borderRadius: "4px",
+      background: isDark ? "rgba(255,255,255,0.08)" : "#f5f5f5",
     }),
-    []
+    [isDark],
   );
+
+  const cvcStyle = useMemo<CSSProperties>(
+    () => ({
+      fontSize: "0.9rem",
+      fontWeight: 600,
+      fontStyle: "italic",
+      letterSpacing: "0.1em",
+      color: isDark ? "rgba(255,255,255,0.85)" : "#333",
+      transition: "color 0.25s ease",
+    }),
+    [isDark],
+  );
+
+  const signalColor = isDark
+    ? "rgba(255,255,255,0.4)"
+    : ISSUER_COLORS[issuer] !== "#80868B"
+      ? ISSUER_COLORS[issuer]
+      : "#999";
 
   return (
     <div style={containerStyle}>
+      {/* Magnetic stripe */}
       <div style={magneticStripeStyle} />
-      <div style={cvcSectionStyle}>
-        <span
-          style={{
-            padding: "10px 15px",
-          }}
-        >
-          {formatCardCvc(cvc || "")}
-        </span>
+
+      {/* Signature strip with CVC */}
+      <div style={signatureStripStyle}>
+        <span style={cvcStyle}>{formatCardCvc(cvc || "")}</span>
       </div>
+
+      {/* Contactless icon */}
       <div
         style={{
           display: "flex",
           justifyContent: "flex-start",
           alignItems: "flex-end",
-          padding: "10px 15px",
+          padding: "0 20px 14px",
           flex: 1,
         }}
       >
-        <HiOutlineSignal
-          size={32}
-          color={getDynamicColor("#808080", issuer, richColors)}
-        />
+        <HiOutlineSignal size={28} color={signalColor} />
       </div>
     </div>
   );
 };
 
-export default React.memo(CardBack);
+export default memo(CardBack);

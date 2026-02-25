@@ -1,5 +1,3 @@
-import React from "react";
-
 export const SodexoLogo = () => (
   <svg version="1.0" width="50" height="40" viewBox="0 0 134 45" id="svg6217">
     <defs id="defs6219" />

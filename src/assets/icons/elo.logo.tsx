@@ -1,11 +1,8 @@
-import React from "react";
-
 export const EloLogo = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 1000 380.9"
-    style={{ enableBackground: "new 0 0 1000 380.9" }}
-    xml:space="preserve"
+    style={{ width: "100%", height: "100%" }}
   >
     <path
       d="M156.1 83.4c11.6-3.8 23.7-5.7 35.9-5.7 54.9 0 100.7 38.2 111.1 88.9l77.7-15.5C363.1 64.9 285.3 0 192.1 0c-21.4 0-41.9 3.4-61.1 9.7l25.1 73.7z"

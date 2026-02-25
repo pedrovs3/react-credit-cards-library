@@ -9,6 +9,7 @@ function App() {
     name: "",
     number: "",
     focus: "",
+    richColors: false,
   });
 
   return (
@@ -112,9 +113,47 @@ function App() {
               setCardData({ ...cardData, focus: "cvc" });
             }}
           />
+
+          <div
+            style={{
+              gridColumn: "1 / -1",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.75rem",
+            }}
+          >
+            <input
+              type="checkbox"
+              name="richColors"
+              id="richColors"
+              onChange={(e) =>
+                setCardData({ ...cardData, richColors: e.target.checked })
+              }
+              defaultChecked={false}
+              style={{
+                width: "20px",
+                height: "20px",
+                cursor: "pointer",
+                accentColor: "#6366f1",
+              }}
+            />
+            <label
+              htmlFor="richColors"
+              style={{
+                cursor: "pointer",
+                fontSize: "1rem",
+                fontWeight: "500",
+                userSelect: "none",
+                transition: "color 0.2s ease",
+              }}
+            >
+              Rich Colors
+            </label>
+          </div>
         </form>
 
         <CreditCard
+          richColors={cardData.richColors}
           cvc={cardData.cvc}
           expiry={cardData.expiry}
           name={cardData.name}

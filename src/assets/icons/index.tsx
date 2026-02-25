@@ -1,5 +1,5 @@
-export * from "./alelo.logo";
-export * from "./ticket.logo";
-export * from "./vr.logo";
-export * from "./sodexo.logo";
-export * from "./elo.logo";
+export { AleloLogo } from "./alelo.logo";
+export { TicketLogo } from "./ticket.logo";
+export { VrLogo } from "./vr.logo";
+export { SodexoLogo } from "./sodexo.logo";
+export { EloLogo } from "./elo.logo";
